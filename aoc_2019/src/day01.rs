@@ -14,29 +14,29 @@ pub trait Solution<T: Display> {
     }
 
     // gets input and returns solution
-    fn solve_first_part(inputs: &Vec<String>) -> T;
-    fn solve_second_part(inputs: &Vec<String>) -> T;
+    fn solve_first_part(inputs: &[String]) -> T;
+    fn solve_second_part(inputs: &[String]) -> T;
 
     // calls get_input and print the solution
     fn print_solution(path: &str) {
         let inputs = Self::get_input(path);
-        println!("Solution for part 1: {}", Self::solve_first_part(&inputs),);
+        println!("Solution for part 1: {}", Self::solve_first_part(&inputs));
 
-        println!("Solution for part 2: {}", Self::solve_second_part(&inputs),);
+        println!("Solution for part 2: {}", Self::solve_second_part(&inputs));
     }
 }
 
 pub struct Day01Solution;
 
 impl Solution<i128> for Day01Solution {
-    fn solve_first_part(inputs: &Vec<String>) -> i128 {
+    fn solve_first_part(inputs: &[String]) -> i128 {
         inputs
             .iter()
             .map(|s| s.parse::<i128>().unwrap().div(3).sub(2))
             .sum()
     }
 
-    fn solve_second_part(inputs: &Vec<String>) -> i128 {
+    fn solve_second_part(inputs: &[String]) -> i128 {
         // recursive function that calculates fuel
         fn recursive_fuel(i: i128) -> i128 {
             if i.is_negative() {
