@@ -14,25 +14,42 @@ pub trait Solution<T: Display> {
     }
 
     // gets input and returns solution
-    // return type must be able to be printed
-    fn solve_first_part(inputs: Vec<String>) -> T;
+    fn solve_first_part(inputs: &Vec<String>) -> T;
+    fn solve_second_part(inputs: &Vec<String>) -> T;
 
     // calls get_input and print the solution
     fn print_solution(path: &str) {
-        println!(
-            "Solution for part 1: {}",
-            Self::solve_first_part(Self::get_input(path)),
-        );
+        let inputs = Self::get_input(path);
+        println!("Solution for part 1: {}", Self::solve_first_part(&inputs),);
+
+        println!("Solution for part 2: {}", Self::solve_second_part(&inputs),);
     }
 }
 
 pub struct Day01Solution;
 
 impl Solution<i128> for Day01Solution {
-    fn solve_first_part(inputs: Vec<String>) -> i128 {
+    fn solve_first_part(inputs: &Vec<String>) -> i128 {
         inputs
-            .into_iter()
+            .iter()
             .map(|s| s.parse::<i128>().unwrap().div(3).sub(2))
+            .sum()
+    }
+
+    fn solve_second_part(inputs: &Vec<String>) -> i128 {
+        // recursive function that calculates fuel
+        fn recursive_fuel(i: i128) -> i128 {
+            if i.is_negative() {
+                0
+            } else {
+                i + recursive_fuel(i.div(3).sub(2))
+            }
+        }
+
+        inputs
+            .iter()
+            .map(|s| s.parse::<i128>().unwrap().div(3).sub(2))
+            .map(recursive_fuel)
             .sum()
     }
 }
