@@ -7,3 +7,5 @@ edition = "2021"
 
 [dependencies]
 itertools = "0.10.0"
+pest = "2.0"
+pest_derive = "2.0"

@@ -1,0 +1,2 @@
+opcode = { ASCII_DIGIT+ }
+opcodes = _{ (opcode ~ ","?)* }
