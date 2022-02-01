@@ -1,6 +1,7 @@
 use crate::day01::Solution;
 use itertools::Itertools;
 use pest::Parser;
+use pest_derive::Parser;
 
 // struct declarations
 #[derive(Parser)]
